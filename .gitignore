@@ -53,6 +53,3 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
-
-# excluding ssl libraries
-!build/windows/installer/packages/citrus/data/*
