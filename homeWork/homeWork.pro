@@ -2,5 +2,4 @@ TEMPLATE = subdirs
 CONFIG += ordered
 
 SUBDIRS = \
-    classWork \
-    homeWork
+    Lesson2

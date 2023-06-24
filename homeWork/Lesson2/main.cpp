@@ -28,7 +28,7 @@ int main()
             break;
 
         case Clear:
-
+            clearStorage();
             break;
 
         case PrintMenu:
