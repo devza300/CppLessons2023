@@ -7,10 +7,6 @@ using namespace std;
 
 /*!
  * \brief printHelpPage - вызов инструкции пользования утилитой
- */
-
-/*!
- * \brief printHelpPage - вызов инструкции пользования утилитой
  * \param error - сообщение ошибки
  */
 void printHelpPage(string error = nullptr)
@@ -76,19 +72,19 @@ int main(int argc, char *argv[])
         generateImage(image);
         generateMask(mask, pro_mode);
     }
-    else
-    {
-        if (!isFileExist(image))
-        {
-            cout << "Image file <" << image << "> is not exist!" << std::endl;
-            return 1;
-        }
 
-        if (!isFileExist(mask))
-        {
-            cout << "Mask file <" << mask << "> is not exist!" << std::endl;
-            return 1;
-        }
+    // проверка существования файла изображения
+    if (!isFileExist(image))
+    {
+        cout << "Image file <" << image << "> is not exist!" << std::endl;
+        return 1;
+    }
+
+    // проверка существования файла маски
+    if (!isFileExist(mask))
+    {
+        cout << "Mask file <" << mask << "> is not exist!" << std::endl;
+        return 1;
     }
 
     // выполнение преобразований
