@@ -9,7 +9,7 @@ using namespace std;
  * \brief printHelpPage - вызов инструкции пользования утилитой
  * \param error - сообщение ошибки
  */
-void printHelpPage(string error = nullptr)
+void printHelpPage(string error = "")
 {
     if (!error.empty())
     {
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     }
 
     // файл-результат
-    char *out = getField(argc, argv, {"-out", "--out"});
+    char *out = getField(argc, argv, {"-o", "--out"});
     if (!out)
     {
         printHelpPage("Error: out file path is not set!");

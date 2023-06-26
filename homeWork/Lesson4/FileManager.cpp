@@ -97,11 +97,10 @@ void calculateOutFile(const std::string &image, const std::string &mask, const s
                 image_stringstream >> image_value;
 
                 std::bitset<CHAR_BIT> mask_as_set(mask_value);
-                int offset = CHAR_BIT - i;
-                std::bitset<CHAR_BIT> mask_by_offset(mask_value >> offset);
 
                 // младший бит
-                int mask_value_in_position = mask_by_offset[0];
+                int offset = CHAR_BIT - i;
+                int mask_value_in_position = mask_as_set[offset];
 
                 int out_value = image_value & (mask_value_in_position ? image_value : 0);
                 stream_out << out_value << " ";

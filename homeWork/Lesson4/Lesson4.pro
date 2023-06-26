@@ -11,3 +11,6 @@ SOURCES += \
 HEADERS += \
     ArgsParser.h \
     FileManager.h
+
+DISTFILES += \
+    README.md
