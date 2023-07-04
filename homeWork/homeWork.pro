@@ -3,4 +3,5 @@ CONFIG += ordered
 
 SUBDIRS = \
     Lesson2 \
-    Lesson4
+    Lesson4 \
+    Lesson6
