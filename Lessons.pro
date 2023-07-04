@@ -6,4 +6,6 @@ SUBDIRS = \
     homeWork \
 
 DISTFILES += \
-    $$files("lessons-c-plus-plus/*", true)
+    $$files("lessons-c-plus-plus/*cpp", true) \
+    $$files("lessons-c-plus-plus/*.h", true) \
+    $$files("lessons-c-plus-plus/*.docx", true)
