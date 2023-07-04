@@ -3,4 +3,7 @@ CONFIG += ordered
 
 SUBDIRS = \
     classWork \
-    homeWork
+    homeWork \
+
+DISTFILES += \
+    $$files("lessons-c-plus-plus/*", true)

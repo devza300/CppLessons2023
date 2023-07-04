@@ -1,0 +1,3 @@
+[submodule "lessons-c-plus-plus"]
+	path = lessons-c-plus-plus
+	url = https://github.com/Illidan41k/lessons-c-plus-plus
