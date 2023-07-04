@@ -1,7 +1,11 @@
 #ifndef TASKOPERATIONPROVIDER_H
 #define TASKOPERATIONPROVIDER_H
 
+#include <functional>
 #include <iostream>
+#include <vector>
+
+using namespace std;
 
 template <typename Array>
 /*!
@@ -9,7 +13,7 @@ template <typename Array>
  * \param arr - массив значений
  * \param length - длина массива
  */
-void printMinimalEvenElement(Array *arr, int length)
+void printMinimalEvenElement(Array arr, int length)
 {
     // переменная для хранения наименьшего значения массива
     int minimum = 0;
@@ -27,7 +31,7 @@ void printMinimalEvenElement(Array *arr, int length)
         int el = arr[i];
 
         // el is even
-        if (el % 2 == 0 && (el <= minimumEven || !isMinimumEvenSet))
+        if (el % 2 == 0 && (el <= minimumEven || !isMinimumEvenSet) && el != 0 /* 0 - это нечетное число */)
         {
             minimumEven = el;
             isMinimumEvenSet = true;
@@ -62,7 +66,7 @@ template <typename Array>
  * \param arr - массив значений
  * \param length - длина массива
  */
-void printMinimumAndMaximumPositionSumm(Array *arr, int length)
+void printMinimumAndMaximumPositionSumm(Array arr, int length)
 {
     // переменная для хранения наименьшего значения массива
     int minimum = 0;
@@ -79,13 +83,13 @@ void printMinimumAndMaximumPositionSumm(Array *arr, int length)
         // получение элемента массива по указанному индексу
         int el = arr[i];
 
-        if (el <= minimum && minimumIndex != -1)
+        if (el <= minimum || minimumIndex == -1)
         {
             minimum = el;
             minimumIndex = i;
         }
 
-        if (el >= maximum && maximumIndex != -1)
+        if (el >= maximum || maximumIndex == -1)
         {
             maximum = el;
             maximumIndex = i;
@@ -93,7 +97,7 @@ void printMinimumAndMaximumPositionSumm(Array *arr, int length)
     }
 
     // вывод суммы индексов
-    std::cout << "Minimum andm aximum position summ: " << minimumIndex + maximumIndex << std::endl;
+    std::cout << "Minimum and maximum position summ: " << minimumIndex + maximumIndex << std::endl;
 }
 
 template <typename Array>
@@ -102,7 +106,7 @@ template <typename Array>
  * \param arr - массив значений
  * \param length - длина массива
  */
-void printMultiplyNotEvenPositions(Array *arr, int length)
+void printMultiplyNotEvenPositions(Array arr, int length)
 {
     // количество нечетных позиций в массиве
     int notEvenPisitionCount = length / 2;
@@ -126,40 +130,60 @@ void printMultiplyNotEvenPositions(Array *arr, int length)
 
 template <typename Array>
 /*!
- * \brief swapPosions - перемещение эоеменов массива
+ * \brief swapPosions - перемещение элементов массива
  * \param arr - массив значений
  * \param length - длина массива
- * \param indexA - первый индекс
- * \param indexB - второй индекс
  */
-void swapPosions(Array *arr, int length, int indexA, int indexB)
+void swapPosions(Array arr, int length)
 {
-    // метод проверки правильности ввода индексов
-    auto checkSwapIndex = [length](int index)
+    std::cout << "Swapping elemnts..." << std::endl;
+
+    // метод ввода индекса
+    function<int(void)> getIndex = [length, &getIndex]()
     {
-        if (index >= length)
+        cout << "Put the value of index: ";
+        int value = 0;
+        cin >> value;
+
+        if (cin.fail())
         {
-            std::cout << "Error, index<" << index << "> out of range!" << std::endl;
-            return true;
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Error, input is not number!" << endl;
+
+            return getIndex();
         }
-        return false;
+
+        if (value >= length)
+        {
+            std::cout << "Error, index<" << value << "> out of range!" << std::endl;
+            return getIndex();
+        }
+
+        return value;
     };
 
-    if (!checkSwapIndex(indexA))
-        return;
+    // первый индекс
+    int indexA = getIndex();
 
-    if (!checkSwapIndex(indexB))
-        return;
+    // второй индекс
+    int indexB = getIndex();
 
     // вывод исходных данных
+    cout << endl;
     std::cout << "Value in index <" << indexA << "> is: " << arr[indexA] << std::endl;
     std::cout << "Value in index <" << indexB << "> is: " << arr[indexB] << std::endl;
 
-    arr[indexA] = arr[indexA] + arr[indexB];
-    arr[indexB] = arr[indexA] - arr[indexB];
-    arr[indexA] = arr[indexA] - arr[indexB];
+    // ничего ненужно менять если введены одинаковые индексы (:
+    if (indexA != indexB)
+    {
+        arr[indexA] = arr[indexA] + arr[indexB];
+        arr[indexB] = arr[indexA] - arr[indexB];
+        arr[indexA] = arr[indexA] - arr[indexB];
+    }
 
     // вывод результата
+    cout << endl;
     std::cout << "Values are swapped!" << std::endl;
     std::cout << "Value in index <" << indexA << "> is: " << arr[indexA] << std::endl;
     std::cout << "Value in index <" << indexB << "> is: " << arr[indexB] << std::endl;

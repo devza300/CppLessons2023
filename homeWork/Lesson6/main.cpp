@@ -1,53 +1,45 @@
 #include <iostream>
-#include <memory>
+
+#include "ArgsParser.h"
+#include "MassiveMode.h"
+#include "VectorMode.h"
 
 using namespace std;
 
-
 /*!
- * \brief getName - получение названия гонки
- * \param isNeedGoMenu - признак необходимости вернуться к главному меню
- * \return - название гонки
+ * \brief printHelpPage - вызов инструкции пользования утилитой
  */
-string getName(bool &isNeedGoMenu)
+void printHelpPage()
 {
-
-    unique_ptr<int>;
-    cout << "Put the race name: ";
-
-    string name;
-    cin >> name;
-
-    cout << "Name <" << name << "> is correct? (Y/N/B)" << endl;
-    cout << "To return to start menu, write <B>" << endl;
-    cout << "Is correct: ";
-
-    string correct;
-    cin >> correct;
-
-    if (correct == "Y")
-    {
-        isNeedGoMenu = false;
-        return name;
-    }
-
-    if (correct == "B")
-    {
-        isNeedGoMenu = true;
-        return "";
-    }
-
-    return getName(isNeedGoMenu);
+    cout << "Hello! You are run the Homework Lesson6 console application!" << endl;
+    cout << endl;
+    cout << "Usage:" << endl;
+    cout << "-h, --help                     print this help page" << endl;
+    cout << "-m, --massive                  run with massive storage" << endl;
+    cout << "-v, --vector                   run with vector storage" << endl;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    cout << "Hello World!" << endl;
+    // вызвана справочная информация
+    if (cmdOptionExists(argv, argv + argc, "-h") || cmdOptionExists(argv, argv + argc, "--help"))
+    {
+        printHelpPage();
+        return 0;
+    }
 
-    int a = 9;
+    // сохранение данных в массив
+    bool massive_mode = cmdOptionExists(argv, argv + argc, "-m") || cmdOptionExists(argv, argv + argc, "--massive");
+    if (massive_mode)
+        return taskMassive();
 
-    bool q;
-    getName(q);
+    // сохранение данных в вектор
+    bool vector_mode = cmdOptionExists(argv, argv + argc, "-v") || cmdOptionExists(argv, argv + argc, "--vector");
+    if (vector_mode)
+        return taskVector();
 
-    return 0;
+    cout << "Run mode not set!" << std::endl;
+    cout << std::endl;
+    printHelpPage();
+    return 1;
 }

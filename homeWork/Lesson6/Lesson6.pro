@@ -4,6 +4,9 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        ArgsParser.cpp \
+        MassiveMode.cpp \
+        VectorMode.cpp \
         main.cpp
 
 DISTFILES += \
@@ -11,4 +14,7 @@ DISTFILES += \
     task.jpg
 
 HEADERS += \
-    TaskOperationProvider.h
+    ArgsParser.h \
+    MassiveMode.h \
+    TaskOperationProvider.h \
+    VectorMode.h
