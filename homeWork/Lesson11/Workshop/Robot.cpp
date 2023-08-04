@@ -148,7 +148,7 @@ void Robot::execute(std::shared_ptr<RoboTask> task)
         auto mechanism = mm_mechanismVector.at(dropIndex);
 
         MSG("Drop mechanism...");
-        mm_mechanismVector.erase(std::next(mm_mechanismVector.begin(), 1), std::next(mm_mechanismVector.begin(), 3));
+        mm_mechanismVector.erase(std::next(mm_mechanismVector.begin(), dropIndex), std::next(mm_mechanismVector.begin(), dropIndex + 1));
         MSG("Done. Mechanism <" + MechanismMap.at(mechanism->getType()) + "> are dropped");
         break;
     }
