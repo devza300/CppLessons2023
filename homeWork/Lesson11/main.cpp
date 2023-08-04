@@ -22,14 +22,6 @@ void printHelpPage()
 
 int main(int argc, char *argv[])
 {
-    FileConfigLoader loader("test.conf");
-    loader.loadConfig();
-    Emulator e(&loader);
-    e.run();
-
-    return 0;
-
-
     // вызвана справочная информация
     if (cmdOptionExists(argc, argv, {"-h", "--help"}))
     {
