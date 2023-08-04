@@ -1,13 +1,13 @@
 #include "RoboTaskMoveTo.h"
 
-RoboTaskMoveTo::RoboTaskMoveTo(Coordinate coordinate) :
+RoboTaskMoveTo::RoboTaskMoveTo(std::pair<int, int> coordinate) :
     RoboTask(TaskType::MoveTo),
     mm_coordinate(coordinate)
 {
 
 }
 
-Coordinate RoboTaskMoveTo::getCoordinate() const
+std::pair<int, int> RoboTaskMoveTo::getCoordinate() const
 {
     return mm_coordinate;
 }

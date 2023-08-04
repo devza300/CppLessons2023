@@ -22,7 +22,10 @@ public:
         PutSmth,
 
         /// подать масло
-        OilShower
+        OilShower,
+
+        /// уронить что-то
+        DropItem
     };
 
     /*!
@@ -30,6 +33,7 @@ public:
      * \param type - тип задачи
      */
     RoboTask(TaskType type);
+    virtual ~RoboTask() = default;
 
     /*!
      * \brief getType - возвращает заданный тип задачи

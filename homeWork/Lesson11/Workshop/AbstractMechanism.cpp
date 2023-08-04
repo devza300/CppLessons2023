@@ -5,3 +5,8 @@ AbstractMechanism::AbstractMechanism(MechanismType type) :
 {
 
 }
+
+AbstractMechanism::MechanismType AbstractMechanism::getType() const
+{
+    return mm_type;
+}

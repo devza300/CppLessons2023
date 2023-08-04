@@ -1,7 +1,7 @@
 #ifndef ROBOTASKMOVETO_H
 #define ROBOTASKMOVETO_H
 
-#include "Config/Coordinate.h"
+#include <math.h>
 #include "RoboTask.h"
 
 /*!
@@ -14,16 +14,16 @@ public:
      * \brief RoboTaskMoveTo - конструктор класса
      * \param coordinate - координату точки назначения
      */
-    RoboTaskMoveTo(Coordinate coordinate);
+    RoboTaskMoveTo(std::pair<int, int> coordinate);
 
     /*!
      * \brief getCoordinate - получить координату точки назначения
      * \return - ткоордината
      */
-    Coordinate getCoordinate() const;
+    std::pair<int, int> getCoordinate() const;
 
 private:
-    Coordinate mm_coordinate;   //!< координата точки назначения
+    std::pair<int, int> mm_coordinate;      //!< координата точки назначения
 
 };
 
